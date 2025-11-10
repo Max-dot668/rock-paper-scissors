@@ -1,0 +1,27 @@
+body {
+    background-color: darkslateblue;
+    color: palegoldenrod;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    font-size: 42px;
+}
+
+img {
+    height: 300px;
+    width: 300px;
+    border: 2px solid palegoldenrod;
+    padding: 16px;
+    border-radius: 10px;
+}
+
+.img-container {
+    display: flex;
+    justify-content: center;
+    gap: 120px;
+}
