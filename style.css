@@ -1,6 +1,6 @@
 body {
-    background-color: darkslateblue;
-    color: palegoldenrod;
+    background-color: gray;
+    color: black;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -12,15 +12,38 @@ h1 {
     font-size: 42px;
 }
 
-img {
-    height: 300px;
-    width: 300px;
-    border: 2px solid palegoldenrod;
-    padding: 16px;
-    border-radius: 10px;
+.description {
+    font-size: 30px;
+    font-weight: bold;
+    font-style: italic;
+    margin-bottom: 20px;
 }
 
-.img-container {
+img {
+    background-color: transparent;
+    cursor: pointer;
+    height: 300px;
+    width: 300px;
+    padding: 16px;
+}
+
+.game-button {
+    background-color: transparent;
+    border: 5px solid black;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.game-button:hover {
+    background-color: darkgray;
+}
+
+.game-button:active {
+    background-color: lightgray;
+}
+
+.btn-container {
     display: flex;
     justify-content: center;
     gap: 120px;
