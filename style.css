@@ -1,5 +1,5 @@
 body {
-    background-color: gray;
+    background-color: darkgray;
     color: black;
     text-align: center;
     display: flex;
@@ -27,7 +27,7 @@ img {
     padding: 16px;
 }
 
-.game-button {
+button {
     background-color: transparent;
     border: 5px solid black;
     border-radius: 12px;
@@ -35,11 +35,11 @@ img {
     transition: background-color 0.3s ease;
 }
 
-.game-button:hover {
-    background-color: darkgray;
+button:hover {
+    background-color: gray;
 }
 
-.game-button:active {
+button:active {
     background-color: lightgray;
 }
 
