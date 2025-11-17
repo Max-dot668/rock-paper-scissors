@@ -35,11 +35,23 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: gray;
+#rock-btn:hover {
+    background-color: rebeccapurple;
+}
+#paper-btn:hover {
+    background-color: firebrick;
+}
+#scissors-btn:hover {
+    background-color: goldenrod;
 }
 
-button:active {
+#rock-btn:active {
+    background-color: lightgray;
+}
+#paper-btn:active {
+    background-color: lightgray;
+}
+#scissors-btn:active {
     background-color: lightgray;
 }
 
