@@ -1,5 +1,9 @@
 /* Rock Paper Scissors Game by Max You */
 
+/* GLOBAL VARIABLES */
+let humanScore = 0;
+let computerScore = 0;
+
 /* HELPER FUNCTIONS */
 const matchSymbol = (btn) => {
     switch(btn) {
@@ -13,6 +17,7 @@ const matchSymbol = (btn) => {
     return "";
 };
 
+// Function that handles the game logic
 function playRound(computerChoice, humanChoice) {
     if ((humanChoice === "rock" && computerChoice === "scissors") || 
         (humanChoice === "paper" && computerChoice === "rock") ||
@@ -26,7 +31,15 @@ function playRound(computerChoice, humanChoice) {
         }
 }
 
-function displayWinner(humanScore, computerScore) {
+// Display current scores
+function displayCurrentScores() {
+    // TODO: Create a function that shows the game scores after each button click
+    // Since humanScore and computerScore are global variables,
+    // we don't need to pass them as parameters to this function.
+}
+
+// Prints the results to the webpage
+function displayWinner() {
     const display = document.querySelector(".display");
 
     // Create the border
@@ -56,13 +69,28 @@ function displayWinner(humanScore, computerScore) {
     display.appendChild(div);
     div.appendChild(para);
 
+    // Retry button
+    retryButton(display, div);
+}
+
+// Play Again button
+function retryButton(display, div) {
+    // Create the 'retry' button and style it
+    const retryButton = document.createElement("button");
+    retryButton.setAttribute("style", "padding: 8px; margin: 10px; font-size: 20px; font-weight: bold;");
+    retryButton.textContent = "Retry";
+
+    div.appendChild(retryButton);
+
+    retryButton.addEventListener("click", (e) => {
+        humanScore = 0;
+        computerScore = 0;
+        display.removeChild(div);
+    });
 }
 
 /* MAIN GAME FUNCTION */
 function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
-
     let buttons = document.querySelectorAll("button");
 
     buttons.forEach((btn) => 
@@ -70,6 +98,8 @@ function playGame() {
 
             // Stop the game if someone already reached 5
             if (humanScore >= 5 || computerScore >= 5) {
+                console.log(`human score: ${humanScore}`);
+                console.log(`computer score: ${computerScore}`);
                 return; 
             }
 
@@ -92,9 +122,9 @@ function playGame() {
 
             // Check win condition
             if (humanScore === 5) {
-                displayWinner(humanScore, computerScore);
+                displayWinner();
             } else if (computerScore === 5) {
-                displayWinner(humanScore, computerScore);
+                displayWinner();
             }
         })
     );
