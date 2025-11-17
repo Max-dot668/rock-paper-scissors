@@ -62,35 +62,42 @@ function displayWinner(humanScore, computerScore) {
 function playGame() {
     let humanScore = 0;
     let computerScore = 0;
-    let clicks = 0;
+
     let buttons = document.querySelectorAll("button");
 
-    // Add Event Listener that triggers the game
-    buttons.forEach((btn) => btn.addEventListener("click", (e) => {
-    // Get computer selection
-    const choices = ["rock", "paper", "scissors"];
-    const computerSelection = () => { return choices[Math.floor(Math.random() * choices.length)] };
-    console.log(`Computer selection: ${computerSelection()}`);
+    buttons.forEach((btn) => 
+        btn.addEventListener("click", (e) => {
 
-    // Get human selection
-    let currBtn = e.currentTarget.id;
-    const humanSelection = matchSymbol(currBtn);
-    console.log(`Human selection: ${humanSelection}`);
+            // Stop the game if someone already reached 5
+            if (humanScore >= 5 || computerScore >= 5) {
+                return; 
+            }
 
-    // Game Logic
-    let playerWins = playRound(computerSelection(), humanSelection);
-    if (playerWins === true) {
-        ++humanScore;
-    } else {
-        ++computerScore;
-    }
-    ++clicks;
+            // Get selections
+            const choices = ["rock", "paper", "scissors"];
+            const computerSelection = choices[Math.floor(Math.random() * choices.length)];
+            const humanSelection = matchSymbol(e.currentTarget.id);
 
-    // Play five rounds and display the results
-    if (clicks === 5) {
-        displayWinner(humanScore, computerScore);
-    }
-}));
+            console.log(`Computer selection: ${computerSelection}`);
+            console.log(`Human selection: ${humanSelection}`);
+
+            // Play one round
+            const playerWins = playRound(computerSelection, humanSelection);
+
+            if (playerWins === true) {
+                humanScore++;
+            } else {
+                computerScore++;
+            }
+
+            // Check win condition
+            if (humanScore === 5) {
+                displayWinner(humanScore, computerScore);
+            } else if (computerScore === 5) {
+                displayWinner(humanScore, computerScore);
+            }
+        })
+    );
 }
 
 /* MAIN PROGRAM */
