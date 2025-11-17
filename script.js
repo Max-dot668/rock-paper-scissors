@@ -29,6 +29,7 @@ function playRound(computerChoice, humanChoice) {
         (computerChoice === "scissors" && humanChoice === "paper")) {
             return false;
         }
+        return false;
 }
 
 // Display current scores
@@ -117,13 +118,15 @@ function playGame() {
             if (playerWins === true) {
                 humanScore++;
             } else {
-                computerScore++;
+                if (humanSelection === computerSelection) {
+                    console.log("Tie");
+                } else {
+                    computerScore++;
+                }
             }
 
             // Check win condition
-            if (humanScore === 5) {
-                displayWinner();
-            } else if (computerScore === 5) {
+            if (humanScore === 5 || computerScore === 5) {
                 displayWinner();
             }
         })
