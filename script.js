@@ -87,6 +87,7 @@ function retryButton(display, div) {
         humanScore = 0;
         computerScore = 0;
         display.removeChild(div);
+        playGame();
     });
 }
 
