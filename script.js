@@ -32,11 +32,71 @@ function playRound(computerChoice, humanChoice) {
         return false;
 }
 
+function playMatch(humanSelection, computerSelection) {
+    // Tie
+    if (humanSelection === computerSelection) {
+        return `It's a tie!\r\nBoth chose ${humanSelection}.\r\n`;
+    }
+
+    // Human wins
+    if (humanSelection === "rock" && computerSelection === "scissors") {
+        return "You win!\r\nRock beats Scissors.\r\n";
+    } else if (humanSelection === "paper" && computerSelection === "rock") {
+        return "You win!\r\nPaper beats Rock.\r\n";
+    } else if (humanSelection === "scissors" && computerSelection === "paper") {
+        return "You win!\r\nScissors beats Paper.\r\n";
+    }
+
+    // Computer wins
+    if (computerSelection === "rock" && humanSelection === "scissors") {
+        return "You lose!\r\nRock beats Scissors.\r\n";
+    } else if (computerSelection === "paper" && humanSelection === "rock") {
+        return "You lose!\r\nPaper beats Rock.\r\n";
+    } else if (computerSelection === "scissors" && humanSelection === "paper") {
+        return "You lose!\r\nScissors beats Paper.\r\n";
+    }
+
+    return "Invalid selection.\r\n";
+}
+
 // Display current scores
-function displayCurrentScores() {
-    // TODO: Create a function that shows the game scores after each button click
-    // Since humanScore and computerScore are global variables,
-    // we don't need to pass them as parameters to this function.
+function displayCurrentScores(humanSelection, computerSelection, playerWins) {
+    // Prints current scores on the display
+    const display = document.querySelector(".display");
+
+    // Create the border
+    const currentScore = document.createElement("div");
+    currentScore.setAttribute("style", "border: 2px solid black;");
+
+    // Text inside the border
+    const para = document.createElement("p");
+    para.setAttribute("style", "font-weight: bold; font-size:20px;");
+    para.style.whiteSpace = "pre-wrap";
+    const decideRoundWinner = playMatch(humanSelection, computerSelection);
+
+    // Text content
+    if (playerWins === true) {
+        para.textContent += decideRoundWinner.toUpperCase();
+        para.textContent += "\r\n";
+        para.textContent += `PLAYER SCORE: ${humanScore}\r\n`;
+        para.textContent += `COMPUTER SCORE: ${computerScore}\r\n`;
+    } else {
+        if (humanSelection === computerSelection) {
+            para.textContent += decideRoundWinner.toUpperCase();
+            para.textContent += "\r\n";
+            para.textContent += `PLAYER SCORE: ${humanScore}\r\n`;
+            para.textContent += `COMPUTER SCORE: ${computerScore}\r\n`;
+        } else {
+            para.textContent += decideRoundWinner.toUpperCase();
+            para.textContent += "\r\n";
+            para.textContent += `PLAYER SCORE: ${humanScore}\r\n`;
+            para.textContent += `COMPUTER SCORE: ${computerScore}\r\n`;
+        }
+    }
+
+    // Display on screen
+    display.appendChild(currentScore);
+    currentScore.appendChild(para);
 }
 
 // Prints the results to the webpage
@@ -86,8 +146,7 @@ function retryButton(display, div) {
     retryButton.addEventListener("click", (e) => {
         humanScore = 0;
         computerScore = 0;
-        display.removeChild(div);
-        playGame();
+        display.textContent = "";
     });
 }
 
@@ -98,7 +157,7 @@ function playGame() {
     buttons.forEach((btn) => 
         btn.addEventListener("click", (e) => {
 
-            // Stop the game if someone already reached 5
+            // Game over
             if (humanScore >= 5 || computerScore >= 5) {
                 console.log(`human score: ${humanScore}`);
                 console.log(`computer score: ${computerScore}`);
@@ -115,19 +174,31 @@ function playGame() {
 
             // Play one round
             const playerWins = playRound(computerSelection, humanSelection);
+            const display = document.querySelector(".display");
 
             if (playerWins === true) {
                 humanScore++;
+                if (humanScore > 0 || computerScore > 0) {
+                display.textContent = "";
+            }
+                displayCurrentScores(humanSelection, computerSelection, playerWins);
             } else {
                 if (humanSelection === computerSelection) {
-                    console.log("Tie");
+                    if (humanScore > 0 || computerScore > 0) {
+                        display.textContent = "";
+                    }
+                    displayCurrentScores(humanSelection, computerSelection, playerWins);
                 } else {
                     computerScore++;
+                    if (humanScore > 0 || computerScore > 0) {
+                        display.textContent = "";
+                    }
+                    displayCurrentScores(humanSelection, computerSelection, playerWins);
                 }
             }
-
             // Check win condition
             if (humanScore === 5 || computerScore === 5) {
+                display.textContent = "";
                 displayWinner();
             }
         })
