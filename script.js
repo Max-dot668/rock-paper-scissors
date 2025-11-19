@@ -169,9 +169,6 @@ function playGame() {
             const computerSelection = choices[Math.floor(Math.random() * choices.length)];
             const humanSelection = matchSymbol(e.currentTarget.id);
 
-            console.log(`Computer selection: ${computerSelection}`);
-            console.log(`Human selection: ${humanSelection}`);
-
             // Play one round
             const playerWins = playRound(computerSelection, humanSelection);
             const display = document.querySelector(".display");
