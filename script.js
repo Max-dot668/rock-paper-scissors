@@ -70,7 +70,7 @@ function displayCurrentScores(humanSelection, computerSelection, playerWins) {
 
     // Text inside the border
     const para = document.createElement("p");
-    para.setAttribute("style", "font-weight: bold; font-size:20px;");
+    para.setAttribute("style", "font-weight: bold; font-size:30px;");
     para.style.whiteSpace = "pre-wrap";
     const decideRoundWinner = playMatch(humanSelection, computerSelection);
 
