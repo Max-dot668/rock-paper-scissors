@@ -4,6 +4,7 @@
 let humanScore = 0;
 let computerScore = 0;
 
+/* Function Implementations */
 function getComputerChoice() {
   let choice = Math.floor(Math.random() * 3);
 
@@ -46,6 +47,7 @@ function playRound(humanChoice, computerChoice) {
 }
 
 function playGame() {
+  // Loop the game 5 times
   for (let i = 0; i < 5; i++) {
     let humanChoice = getHumanChoice();
     let computerChoice = getComputerChoice();
