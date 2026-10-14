@@ -22,6 +22,10 @@ function getHumanChoice(btnChoice) {
 }
 
 function playRound(humanChoice, computerChoice) {
+  // For Debugging (Remove later)
+  console.log(`user's choice: ${humanChoice}`);
+  console.log(`computer's choice: ${computerChoice}`);
+
   // Winning Case Scenarios
   if (humanChoice == "rock" && computerChoice == "scissors") {
     console.log("You Won! Rock beats Paper.");
@@ -43,6 +47,11 @@ function playRound(humanChoice, computerChoice) {
   } else if (computerChoice == "scissors" && humanChoice == "paper") {
     console.log("You Lost! Scissors beats Paper.");
     computerScore++;
+  }
+
+  // Tie
+  if (humanChoice === computerChoice) {
+    console.log("It's a tie! no one earns a point");
   }
 }
 
