@@ -1,3 +1,4 @@
+/* Global Styling */
 body {
     margin: 0;
 }
@@ -9,6 +10,7 @@ button {
     font-size: 16px;
 }
 
+/* Buttons Styling */
 .btn-container {
     display: flex;
     justify-content: space-evenly;
