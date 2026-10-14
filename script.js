@@ -17,8 +17,8 @@ function getComputerChoice() {
   }
 }
 
-function getHumanChoice() {
-  return prompt().toLowerCase();
+function getHumanChoice(btnChoice) {
+  return btnChoice;
 }
 
 function playRound(humanChoice, computerChoice) {
@@ -46,35 +46,11 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-function playGame() {
-  // Loop the game 5 times
-  for (let i = 0; i < 5; i++) {
-    let humanChoice = getHumanChoice();
-    let computerChoice = getComputerChoice();
-    playRound(humanChoice, computerChoice);
-  }
+// Event Listener triggered by specific button clicked
+const buttons = document.querySelectorAll("button");
 
-  // Print Outcome
-  if (humanScore > computerScore) {
-    console.log(
-      `You won the game!\n
-      Your Score: ${humanScore}\n
-      Computer Score: ${computerScore}`,
-    );
-  } else if (humanScore < computerScore) {
-    console.log(
-      `You lost the game.\n
-      Your Score: ${humanScore}\n
-      Computer Score: ${computerScore}`,
-    );
-  } else {
-    console.log(
-      `It's a tie!.\n
-      Your Score: ${humanScore}\n
-      Computer Score: ${computerScore}`,
-    );
-  }
-}
-
-/* Start Game */
-playGame();
+buttons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    playRound(getHumanChoice(e.target.id), getComputerChoice());
+  });
+});
