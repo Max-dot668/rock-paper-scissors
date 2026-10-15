@@ -48,11 +48,39 @@ function playRound(humanChoice, computerChoice) {
     console.log("You Lost! Scissors beats Paper.");
     computerScore++;
   }
-
   // Tie
   if (humanChoice === computerChoice) {
     console.log("It's a tie! no one earns a point");
   }
+}
+
+function displayResults(humanScore, computerScore) {
+  const results = document.querySelector(".results");
+
+  const resultHeader = document.createElement("h1");
+  resultHeader.textContent = "RESULTS";
+  results.appendChild(resultHeader);
+
+  const playerTotalPoints = document.createElement("p");
+  playerTotalPoints.classList.add("player-score");
+  playerTotalPoints.textContent = `Player Score: ${humanScore}`;
+  results.appendChild(playerTotalPoints);
+
+  const computerTotalPoints = document.createElement("p");
+  computerTotalPoints.classList.add("computer-score");
+  computerTotalPoints.textContent = `Computer Score: ${computerScore}`;
+  results.appendChild(computerTotalPoints);
+
+  const winner = document.createElement("p");
+  winner.classList.add("winner");
+  if (humanScore > computerScore) {
+    winner.textContent = "You Win!";
+  } else if (humanScore < computerScore) {
+    winner.textContent = "You Lost :(";
+  } else {
+    winner.textContent = "It's a Tie!";
+  }
+  results.appendChild(winner);
 }
 
 // Event Listener triggered by specific button clicked
@@ -63,3 +91,5 @@ buttons.forEach((button) => {
     playRound(getHumanChoice(e.target.id), getComputerChoice());
   });
 });
+
+displayResults(humanScore, computerScore);
